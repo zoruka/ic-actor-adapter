@@ -77,6 +77,8 @@ ActorAdapter.DEFAULT_WHITELIST = [
 ActorAdapter.DEFAULT_HOST = 'https://localhost:8000';
 
 ActorAdapter.ENVIRONMENT = 'development';
+
+ActorAdapter.DEFAULT_PROVIDER = window.ic?.plug;
 ```
 
 ### The `ENVIRONMENT` parameter

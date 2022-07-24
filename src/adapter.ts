@@ -11,6 +11,8 @@ export class ActorAdapter {
 
   static DEFAULT_HOST = 'https://ic0.app/';
 
+  static DEFAULT_PROVIDER: ActorAdapter.Provider | undefined = undefined;
+
   static ENVIRONMENT = process.env.NODE_ENV ?? 'development';
 
   static readonly actors: ActorAdapter.Actors = {};
@@ -18,7 +20,7 @@ export class ActorAdapter {
   private options: ActorAdapter.Options;
 
   constructor(
-    private provider?: ActorAdapter.Provider,
+    private provider = ActorAdapter.DEFAULT_PROVIDER,
     options: Partial<ActorAdapter.Options> = {}
   ) {
     this.options = {
