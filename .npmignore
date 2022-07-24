@@ -1,7 +1,10 @@
 src
-.eslintrc.json
+.eslintrc
 .gitignore
 .npmignore
+.prettierrc
 tsconfig.json
+tsconfig.build.json
 .github
 yarn.lock
+examples
