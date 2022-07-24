@@ -24,6 +24,6 @@
       { "transform": "typescript-transform-paths", "afterDeclarations": true }
     ]
   },
-  "include": ["src"],
+  "include": ["src", "examples"],
   "exclude": ["node_modules", "dist"]
 }
