@@ -6,10 +6,10 @@
 
 ```bash
 # with npm
-npm i ic-actor-adapter
+npm i ic-actor-adapter @dfinity/agent @dfinity/candid
 
 # with yarn
-yarn add ic-actor-adapter
+yarn add ic-actor-adapter @dfinity/agent @dfinity/candid
 ```
 
 # Usage
