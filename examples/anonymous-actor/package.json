@@ -1,0 +1,12 @@
+{
+  "dependencies": {
+    "@dfinity/candid": "^0.12.1",
+    "@dfinity/principal": "^0.12.1",
+    "ic-actor-adapter": "../../",
+    "js-sha256": "^0.9.0",
+    "typescript": "^4.7.4"
+  },
+  "scripts": {
+    "start": "node index.js"
+  }
+}
