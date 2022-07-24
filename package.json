@@ -2,7 +2,7 @@
   "name": "ic-actor-adapter",
   "version": "0.0.1",
   "description": "A code snippet to handle agents and actors for Internet Computer",
-  "main": "src/index.ts",
+  "main": "lib/index.js",
   "repository": "https://github.com/zoruka/ic-actor-adapter",
   "author": "zoruka",
   "license": "MIT",
