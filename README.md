@@ -77,8 +77,14 @@ ActorAdapter.DEFAULT_WHITELIST = [
 ActorAdapter.DEFAULT_HOST = 'https://localhost:8000';
 
 ActorAdapter.ENVIRONMENT = 'development';
+
+ActorAdapter.DEFAULT_PROVIDER = window.ic?.plug;
 ```
 
 ### The `ENVIRONMENT` parameter
 
 The `ActorAdapter.ENVIRONMENT` is used for determinate instructions that fixes the development in a local replica. For default it takes the value of `process.env.NODE_ENV`. If NODE_ENV is not present, the default value is going to be `development`. Is highly recommended to change it to something else (e.g. `production`) when your application is not under development mode.
+
+## Common IDLs and Factories
+
+The most used IDLs through the IC projects will be added on [common-idls](/src/common-idls/) folder. Code snippets for using those IDLs on Actors will be added on [factory](/src/factory) folder. Those pieces of code are added to reduce the amount of code created on your app and speed up the development.
