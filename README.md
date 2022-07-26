@@ -51,7 +51,10 @@ After instantiating one adapter you can create different actors, but only one in
 
 ```ts
 const adapter = new ActorAdapter();
-const actor = adapter.createActor<ActorInterface>(canisterId, interfaceFactory);
+const actor = await adapter.createActor<ActorInterface>(
+  canisterId,
+  interfaceFactory
+);
 ```
 
 ### Anonymous Actor
@@ -59,7 +62,10 @@ const actor = adapter.createActor<ActorInterface>(canisterId, interfaceFactory);
 In some situations is not required to have the identity attached to your request (e.g. data querying). In these cases you can use anonymous actors avoiding the request of user permissions.
 
 ```ts
-const actor = ActorAdapter.createAnonymousActor(canisterId, interfaceFactory);
+const actor = await ActorAdapter.createAnonymousActor(
+  canisterId,
+  interfaceFactory
+);
 ```
 
 ## Default Parameters

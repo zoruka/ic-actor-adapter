@@ -17,6 +17,8 @@ export class ActorAdapter {
 
   static readonly actors: ActorAdapter.Actors = {};
 
+  static readonly anonymousActors: ActorAdapter.AnonymousActors = {};
+
   private options: ActorAdapter.Options;
 
   constructor(
@@ -57,7 +59,7 @@ export class ActorAdapter {
     let actor: ActorSubclass<T>;
 
     if (!this.provider) {
-      actor = ActorAdapter.createAnonymousActor(
+      actor = await ActorAdapter.createAnonymousActor(
         canisterId,
         interfaceFactory,
         this.options.host
@@ -114,23 +116,30 @@ export class ActorAdapter {
    * @param {string} canisterId The canister id of the actor
    * @param {IDL.InterfaceFactory} interfaceFactory The interface factory of the actor
    * @param {string=ActorAdapter.DEFAULT_HOST} host The IC host to connect to
-   * @returns {ActorAdapter.Actor<T>} The anonymous actor
+   * @returns {Promise<ActorAdapter.Actor<T>>} The anonymous actor
    */
-  static createAnonymousActor<T>(
+  static async createAnonymousActor<T>(
     canisterId: string,
     interfaceFactory: IDL.InterfaceFactory,
     host = ActorAdapter.DEFAULT_HOST
-  ): ActorAdapter.Actor<T> {
+  ): Promise<ActorAdapter.Actor<T>> {
+    if (ActorAdapter.anonymousActors[canisterId]) {
+      return ActorAdapter.anonymousActors[canisterId];
+    }
+
     const agent = new HttpAgent({ host, fetch });
 
     if (this.ENVIRONMENT === 'development') {
-      agent.fetchRootKey();
+      await agent.fetchRootKey();
     }
 
-    return Actor.createActor<T>(interfaceFactory, {
+    const actor = Actor.createActor<T>(interfaceFactory, {
       agent,
       canisterId,
     });
+
+    this.anonymousActors[canisterId] = actor;
+    return actor;
   }
 }
 
@@ -188,6 +197,8 @@ export namespace ActorAdapter {
     string,
     { actor: ActorSubclass<any>; adapter: ActorAdapter }
   >;
+
+  export type AnonymousActors = Record<string, ActorSubclass<any>>;
 
   /**
    * Return for the createActor function of the ActorAdapter.
