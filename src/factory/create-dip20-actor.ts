@@ -8,6 +8,8 @@ export const createDIP20Actor = (
   return actor.createActor(canisterId, DIP20.factory);
 };
 
-export const createAnonDIP20Actor = (canisterId: string): DIP20.Factory => {
+export const createAnonDIP20Actor = async (
+  canisterId: string
+): Promise<DIP20.Factory> => {
   return ActorAdapter.createAnonymousActor(canisterId, DIP20.factory);
 };
