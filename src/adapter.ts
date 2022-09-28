@@ -43,12 +43,12 @@ export class ActorAdapter {
   ): Promise<ActorAdapter.Actor<T>> {
     if (ActorAdapter.actors[canisterId]) {
       if (this.provider) {
-        const currentPrincipal = await Actor.agentOf(
+        const currentAgent = Actor.agentOf(
           ActorAdapter.actors[canisterId].actor
-        )?.getPrincipal();
-        const providerPrincipal = await this.provider?.agent?.getPrincipal();
+        );
+        const providerAgent = this.provider?.agent;
 
-        if (currentPrincipal?.toString() === providerPrincipal?.toString()) {
+        if (JSON.stringify(currentAgent) === JSON.stringify(providerAgent)) {
           return ActorAdapter.actors[canisterId].actor;
         }
       } else {
